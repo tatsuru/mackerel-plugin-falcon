@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"flag"
 	"fmt"
+	"os"
 	"os/exec"
 	"regexp"
 	"strconv"
@@ -247,7 +248,8 @@ func (f FalconPlugin) FetchMetrics() (map[string]float64, error) {
 	for k, v := range regexmap {
 		stat[k], err = parseMetrics(outStr, v.regex, v.index)
 		if err != nil {
-			return nil, err
+			fmt.Fprintf(os.Stderr, "Error parsing %s: %s\n", k, err.Error())
+			continue
 		}
 	}
 
