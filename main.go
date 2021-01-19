@@ -122,7 +122,7 @@ func (f FalconPlugin) GraphDefinition() map[string]mp.Graphs {
 
 func (f FalconPlugin) FetchMetrics() (map[string]float64, error) {
 	stat := map[string]float64{}
-	cmd := exec.Command("/Library/CS/falconctl", "stats")
+	cmd := exec.Command("/Applications/Falcon.app/Contents/Resources/falconctl", "stats")
 	var out bytes.Buffer
 	cmd.Stdout = &out
 	err := cmd.Run()
