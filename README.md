@@ -18,11 +18,5 @@ command = "/path/to/mackerel-plugin-falcon"
 
 ## Requirements
 
-WARNING: This might create security holes.
-
-```
-sudo chmod 755 /Library/CS/falconctl
-```
-
-
+This plugin requires administor privilege.
 
