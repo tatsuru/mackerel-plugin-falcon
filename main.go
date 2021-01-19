@@ -117,27 +117,6 @@ func (f FalconPlugin) GraphDefinition() map[string]mp.Graphs {
 				{Name: "l_f_o_download_mac_v1", Label: "LFODownloadMacV1", Diff: false, Stacked: false},
 			},
 		},
-		"communications_bridge": {
-			Label: labelPrefix + " Communications Bridge",
-			Unit:  mp.UnitInteger,
-			Metrics: []mp.Metrics{
-				{Name: "communications_bridge_kernel_sent", Label: "Sent (kerenel)", Diff: false, Stacked: false},
-				{Name: "communications_bridge_kernel_received", Label: "Received (kerenel)", Diff: false, Stacked: false},
-				{Name: "communications_bridge_user_sent", Label: "Sent (user)", Diff: false, Stacked: false},
-				{Name: "communications_bridge_user_received", Label: "Received (user)", Diff: false, Stacked: false},
-			},
-		},
-		"bus_bridge": {
-			Label: labelPrefix + " Bus Bridge",
-			Unit:  mp.UnitInteger,
-			Metrics: []mp.Metrics{
-				{Name: "bus_bridge_kernel_sent", Label: "Sent (kerenel)", Diff: false, Stacked: false},
-				{Name: "bus_bridge_kernel_received", Label: "Received (kerenel)", Diff: false, Stacked: false},
-				{Name: "bus_bridge_user_sent", Label: "Sent (user)", Diff: false, Stacked: false},
-				{Name: "bus_bridge_user_received", Label: "Received (user)", Diff: false, Stacked: false},
-				{Name: "bus_bridge_queue_size", Label: "Queue Size", Diff: false, Stacked: false},
-			},
-		},
 	}
 }
 
@@ -229,19 +208,6 @@ func (f FalconPlugin) FetchMetrics() (map[string]float64, error) {
 		// Events Received
 		"hash_policy_lightning_response_mac_v2": &FalconOutputFormat{regexp.MustCompile(" +HashPolicyLightningResponseMacV2 +([0-9]+) "), 0},
 		"l_f_o_download_mac_v1": &FalconOutputFormat{regexp.MustCompile(" +LFODownloadMacV1 +([0-9]+) "), 0},
-
-		// Communications Bridge
-		"communications_bridge_kernel_sent":         &FalconOutputFormat{regexp.MustCompile(" +Sent +([0-9]+) "), 2},
-		"communications_bridge_kernel_received":     &FalconOutputFormat{regexp.MustCompile(" +Received +([0-9]+) "), 2},
-		"communications_bridge_user_sent":         &FalconOutputFormat{regexp.MustCompile(" +Sent +[0-9]+ +([0-9]+) "), 2},
-		"communications_bridge_user_received":     &FalconOutputFormat{regexp.MustCompile(" +Received +[0-9]+ +([0-9]+) "), 2},
-
-		// Bus Bridge
-		"bus_bridge_kernel_sent":         &FalconOutputFormat{regexp.MustCompile(" +Sent +([0-9]+) "), 3},
-		"bus_bridge_kernel_received":     &FalconOutputFormat{regexp.MustCompile(" +Received +([0-9]+) "), 3},
-		"bus_bridge_user_sent":         &FalconOutputFormat{regexp.MustCompile(" +Sent +[0-9]+ +([0-9]+) "), 3},
-		"bus_bridge_user_received":     &FalconOutputFormat{regexp.MustCompile(" +Received +[0-9]+ +([0-9]+) "), 3},
-		"bus_bridge_queue_size":     &FalconOutputFormat{regexp.MustCompile(" +Event Queue Size +- +([0-9]+) "), 0},
 	}
 	outStr := out.String()
 
